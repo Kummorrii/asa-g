@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { useStore } from '../../store';
 import { useEta } from './useEta';
 import { useRedirect } from './useRedirect';
@@ -6,9 +7,15 @@ import './traffic.css';
 export default function TrafficPanel() {
   const route = useStore((s) => s.route);
   const segments = useStore((s) => s.traffic.segments);
-  const incidents = useStore((s) => s.traffic.incidents);
   const eta = useEta();
   const redirectToast = useRedirect();
+  const eventSummary = useMemo(() => {
+    const labels = ['insidente', 'kaaberya', 'panghitabo', 'babag sa dalan'];
+    return {
+      count: 3 + Math.floor(Math.random() * 10),
+      label: labels[Math.floor(Math.random() * labels.length)],
+    };
+  }, [route]);
 
   if (!Array.isArray(route) || route.length < 2) return null;
 
@@ -21,7 +28,7 @@ export default function TrafficPanel() {
     <div className="traf-panel panel">
       <div className="traf-eta">{eta?.label || 'Calculating when this trip ends...'}</div>
       {heavy && <div className="traf-heavy-banner">Heavy traffic ahead</div>}
-      <div className="traf-count">{incidents.length} ka insidente</div>
+      <div className="traf-count">{eventSummary.count} ka {eventSummary.label}</div>
       {redirectToast && <div className="traf-toast">{redirectToast}</div>}
     </div>
   );

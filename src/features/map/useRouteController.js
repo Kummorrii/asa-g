@@ -90,10 +90,19 @@ export function useRouteController({ onResetInputs } = {}) {
   );
 
   useEffect(() => {
-    const offReroute = bus.on(EVENTS.REROUTE_REQUEST, async ({ to, reason } = {}) => {
+    const offReroute = bus.on(EVENTS.REROUTE_REQUEST, async ({ to, reason, routeOverride, routeInfoOverride } = {}) => {
       const state = useStore.getState();
       const targetDest = to || state.destination;
       if (!targetDest) return;
+
+      if (reason === 'redirect_return' && Array.isArray(routeOverride) && routeOverride.length > 1) {
+        state.setDestination(targetDest);
+        state.setRoute(routeOverride, routeInfoOverride);
+        state.setPlan({ status: 'navigating', error: null });
+        state.setSim({ status: 'running', index: 0, progress: 0, speedKmh: 0 });
+        bus.emit(EVENTS.ROUTE_READY, { rerouted: true, reason });
+        return;
+      }
 
       const currentPos = state.sim?.pos;
       const fromPoint =

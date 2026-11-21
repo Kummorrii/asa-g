@@ -34,6 +34,7 @@
   background: var(--accent);
 }
 .cap-message { color: #fca5a5; font-weight: 700; }
+.cap-joke { margin: 10px 0 0; color: var(--panel-muted); font-size: .82rem; }
 .cap-puzzle { display: grid; gap: 12px; }
 .cap-puzzle p { margin: 12px 0 0; }
 .cap-puzzle input {
@@ -48,12 +49,12 @@
 .cap-emoji-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
 .cap-emoji-grid button { min-height: 76px; border: 1px solid var(--panel-border); border-radius: 10px; background: rgba(255,255,255,.06); font-size: 2rem; cursor: pointer; }
 .cap-emoji-grid button.cap-selected { border: 3px solid var(--accent); background: rgba(59,130,246,.22); }
-.cap-distorted-word { display: grid; place-items: center; }
-.cap-distorted-word text { fill: var(--panel-fg); font-size: 38px; font-weight: 800; letter-spacing: 2px; transform: rotate(-3deg); }
+.cap-distorted-word { display: grid; place-items: center; min-height: 76px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.08); }
+.cap-distorted-word span { color: var(--panel-fg, #f3f4f6); font-size: 2rem; font-weight: 800; letter-spacing: .08em; }
 .cap-slider { accent-color: var(--accent); }
 .cap-slider-label { color: var(--panel-muted); font-size: .8rem; }
 .cap-button-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
-.cap-not-button { display: grid; place-items: center; min-height: 42px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.08); cursor: pointer; }
+.cap-not-button { display: grid; place-items: center; min-height: 42px; padding: 8px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.08); color: var(--panel-fg, #f3f4f6); font: inherit; font-size: .82rem; line-height: 1.25; cursor: pointer; }
 .cap-hold { min-height: 72px; border: 2px solid var(--accent); border-radius: 12px; background: rgba(59,130,246,.18); color: var(--panel-fg); user-select: none; touch-action: none; }
 .cap-traf-light { display: flex; gap: 8px; width: fit-content; padding: 8px; border-radius: 18px; background: #111827; }
 .cap-traf-light i, .cap-traf-light b { width: 24px; height: 24px; border-radius: 50%; }

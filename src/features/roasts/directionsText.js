@@ -27,9 +27,10 @@ export function maneuverText(type, modifier, name) {
   return `Continue straight${road}`;
 }
 
-export function addAbsurdTwist(text) {
+export function addAbsurdTwist(text, seed = Math.random()) {
   const twists = ['then immediately make a U-turn.', 'Then another one.', 'Continue straight for 14 km. Why not.', 'Turn left. No, your other left.', 'You have arrived. Joke lang.'];
-  return `${text}${Math.random() < 0.55 ? ` ${twists[Math.floor(Math.random() * twists.length)]}` : '.'}`;
+  const stableSeed = Math.abs(Math.trunc(seed));
+  return `${text}${stableSeed % 20 < 11 ? ` ${twists[stableSeed % twists.length]}` : '.'}`;
 }
 
 export function buildDirectionText(routeInfo, route, sim) {
@@ -43,7 +44,7 @@ export function buildDirectionText(routeInfo, route, sim) {
     const meters = Math.max(10, Math.round((km * 1000) / 10) * 10);
     const instruction = maneuverText(nextStep.type, nextStep.modifier, nextStep.name);
     const distance = meters >= 1000 ? `${(meters / 1000).toFixed(1)} km` : `${meters} m`;
-    return addAbsurdTwist(`In ${distance}, ${instruction.toLowerCase()}`);
+    return addAbsurdTwist(`In ${distance}, ${instruction.toLowerCase()}`, Number(nextStep.index));
   } catch {
     return 'Continue straight. The map is taking a wild guess.';
   }

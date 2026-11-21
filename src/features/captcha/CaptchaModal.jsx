@@ -11,6 +11,8 @@ import NotAButtonPuzzle from './puzzles/NotAButtonPuzzle';
 import HumanWordPuzzle from './puzzles/HumanWordPuzzle';
 import HoldButtonPuzzle from './puzzles/HoldButtonPuzzle';
 import TrafficLightPuzzle from './puzzles/TrafficLightPuzzle';
+import BisayaPhrasePuzzle from './puzzles/BisayaPhrasePuzzle';
+import ChickenCrossingPuzzle from './puzzles/ChickenCrossingPuzzle';
 import './captcha.css';
 
 const puzzles = [
@@ -22,6 +24,15 @@ const puzzles = [
   HumanWordPuzzle,
   HoldButtonPuzzle,
   TrafficLightPuzzle,
+  BisayaPhrasePuzzle,
+  ChickenCrossingPuzzle,
+];
+
+const captchaJokes = [
+  'Ayaw kabalaka, mas lisod pa pilion asa moagi sa Cebu.',
+  'Human ba ka? Ang robot diri kay naglibog pud sa traffic.',
+  'Tubaga lang. Dili ni exam sa LTO, kunohay.',
+  'Ang captcha ra ang hunongon, dili ang imong pasensya.',
 ];
 
 export default function CaptchaModal() {
@@ -30,6 +41,7 @@ export default function CaptchaModal() {
   const setBlocked = useStore((state) => state.setBlocked);
   const [Puzzle, setPuzzle] = useState(() => puzzles[0]);
   const [message, setMessage] = useState('');
+  const [joke, setJoke] = useState(() => captchaJokes[Math.floor(Math.random() * captchaJokes.length)]);
 
   const chooseNewPuzzle = (avoid) => {
     const choices = puzzles.filter((item) => item !== avoid);
@@ -39,6 +51,7 @@ export default function CaptchaModal() {
   useEffect(() => {
     if (blocked) {
       setMessage('');
+      setJoke(captchaJokes[Math.floor(Math.random() * captchaJokes.length)]);
       chooseNewPuzzle(Puzzle);
     }
   }, [blocked]);
@@ -81,6 +94,7 @@ export default function CaptchaModal() {
           <span className="cap-check">✓</span>
           <h2>Are you a robot?</h2>
         </div>
+        <p className="cap-joke">{joke}</p>
         {message && <p className="cap-message" role="alert">{message}</p>}
         <Puzzle onSuccess={onSuccess} onFail={onFail} />
       </div>

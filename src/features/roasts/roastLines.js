@@ -20,12 +20,12 @@ export const ROAST_LINES = {
     spicy: ['Traffic worse na. Congratulations, you unlocked standing still.', 'The road stopped. The ETA did not receive the memo.', 'Heavy traffic: now our car has a meditation practice.', 'Every lane is slow. The map is holding a grudge.'],
   },
   captcha_ok: {
-    mild: ['Captcha solved. Humans one, robot app zero.', 'Verified. The robot is surprisingly impressed.', 'You passed. The road was rooting for you, maybe.', 'Captcha complete. Now we can resume the bad route.', 'Human confirmed. The evidence is mostly vibes.', 'Success! Your puzzle skills survived the system.'],
-    spicy: ['Captcha solved. ASA is legally shocked.', 'Verified human. The bar was on the ground and you cleared it.', 'You clicked squares. The app is humbled.', 'Puzzle conquered. Now go suffer on another lane.'],
+    mild: ['Captcha solved. Humans one, robot app zero.', 'Verified. The robot is surprisingly impressed.', 'You passed. The road was rooting for you, maybe.', 'Captcha complete. Now we can resume the bad route.', 'Human confirmed. The evidence is mostly vibes.', 'Success! Your puzzle skills survived the system.', 'Maayo! Nakalusot ka, ako nga AI wa gihapoy klarong plano.', 'Sakto! Mas paspas pa ka motubag kaysa moabot ang jeep.', 'Human verified. Ang captcha ra diay ang naay sense diri.'],
+    spicy: ['Captcha solved. ASA is legally shocked.', 'Verified human. The bar was on the ground and you cleared it.', 'You clicked squares. The app is humbled.', 'Puzzle conquered. Now go suffer on another lane.', 'Naka pasar ka! Ako nga fake AI, wa pa kapasar sa basic logic.', 'Sakto imong tubag. Karon, asa na pud ta paingon ani?'],
   },
   captcha_fail: {
-    mild: ['Failed? Ang robot thinks you are also a robot.', 'Try again. The puzzle believes in you, maybe.', 'Captcha miss. Select the squares, not your hopes.', 'Not quite. This road has standards now.', 'Wrong box. The app took that personally.', 'Captcha fail. Refresh your human skills.'],
-    spicy: ['Wow, even the fake puzzle does not trust you.', 'Try again, kay ang robot has questions.', 'Wrong answer. Congrats, you are equally mysterious.', 'Captcha rejected. Your processing unit needs a hug.'],
+    mild: ['Failed? Ang robot thinks you are also a robot.', 'Try again. The puzzle believes in you, maybe.', 'Captcha miss. Select the squares, not your hopes.', 'Not quite. This road has standards now.', 'Wrong box. The app took that personally.', 'Captcha fail. Refresh your human skills.', 'Sayop gamay. Parehas sa akong GPS, duol pero lahi nga dalan.', 'Ayaw suko, boss. Ang captcha ra ang arte, dili ikaw.', 'Sayop ang tubag, pero sakto ang confidence. Murag akong AI.'],
+    spicy: ['Wow, even the fake puzzle does not trust you.', 'Try again, kay ang robot has questions.', 'Wrong answer. Congrats, you are equally mysterious.', 'Captcha rejected. Your processing unit needs a hug.', 'Sayop na pud? Ako gani nga fake AI, maulaw na motan-aw.', 'Ang captcha niingon “dili.” Parehas sa traffic light nga dugay mo-green.'],
   },
   arrival_near: {
     mild: ['90 percent na. The finish line is 90 percent nervous.', 'Almost there. The map saved the awkward turn for now.', 'Arrival near. Do not celebrate before the U-turn.', 'We are close. The ETA is preparing a comeback.', 'Final stretch. Keep the fake steering steady.', 'Near arrival; the drama is down to meters.'],
@@ -36,7 +36,7 @@ export const ROAST_LINES = {
     spicy: ['Arrived. The app insists this was intentional.', 'You survived. The longest route has achieved everything.', 'Destination reached. Logic is still missing.', 'Finished. The map is too proud of itself.'],
   },
   idle: {
-    mild: ['As an AI language model, I cannot find your destination. Joke, wala koy AI.', 'Calculating... calculating... nah, wala koy gibuhat.', 'Thinking deeply. Actually, this list is pre-written.', 'My AI brain says continue. My fake CPU says why.', 'Powered by absolutely nothing. Consider it maintained.', 'I am reviewing the route. The route is also confused.'],
-    spicy: ['Smart assistant mode activated. It is mostly confidence.', 'AI processing! Translation: random line selected.', 'I have analyzed all roads. They are all too long.', 'My neural network is a shuffled JavaScript array.'],
+    mild: ['As an AI language model, I cannot find your destination. Joke, wala koy AI.', 'Calculating... calculating... nah, wala koy gibuhat.', 'Thinking deeply. Actually, this list is pre-written.', 'My AI brain says continue. My fake CPU says why.', 'Powered by absolutely nothing. Consider it maintained.', 'I am reviewing the route. The route is also confused.', 'Nag-think ko kadiyot. Nag-loading ra diay akong utok nga hinulaman.', 'AI kuno ko, pero ako pangutana: asa ta padulong ani?', 'Naa koy artificial intelligence, pero ang intelligence kay absent.', 'Nag-analyze ko sa mapa. Ang mapa ni-analyze pud nako, unya ni-undang.'],
+    spicy: ['Smart assistant mode activated. It is mostly confidence.', 'AI processing! Translation: random line selected.', 'I have analyzed all roads. They are all too long.', 'My neural network is a shuffled JavaScript array.', 'Fake AI ko, pero mas sure pa ko kaysa sa imong GPS.', 'Nag-compute ko og shortcut. Ang resulta: dugang 12 kilometro.', 'Kusog kog panghambog, hinay kog pangita og dalan.'],
   },
 };
