@@ -1,56 +1,51 @@
-# ASA — Bisaya for "where?"
+# ASA — “Asa ta padulong?”
 
-ASA is a deliberately terrible Google Maps parody built for MALFUNCTION 2026 (iDE.A). It gives you a Google-Maps-style trip picker, then sabotages the journey with the longest route, fake traffic, worsening ETAs, random redirects, scripted Bisaya-English roasts, and frequent robot checks.
+ASA is a Cebu-inspired trip planning and navigation demo where the app intentionally makes journeys more complicated. It combines map planning, simulated travel, changing traffic conditions, route redirection, humorous Bisaya-English messages, and interactive CAPTCHA challenges.
 
-## Features
+The project runs as a front-end web application using React and Vite. It includes live map search and routing when internet access is available, plus fallback behavior for offline use.
 
-- Search or click-map start and destination selection
-- Food-place searches automatically spin through matching branches and choose one for you
-- Longest available route with saved offline fallback routes
-- Simulated car or walker with speed controls and follow camera
-- Fake incidents, traffic, worsening ETA, and random redirects
-- Scripted local "AI helper" roasts and absurd directions
-- Eight interactive chaos captchas
-- Hidden pitch controls (`D` key)
-- Fully front-end; no accounts, API keys, backend, or voice
+## Requirements
 
-## Run locally
+Before running the project, install:
 
-```bash
-npm i
-npm run dev
-```
+- [Node.js](https://nodejs.org/) version 18 or newer
+- npm, which is included with Node.js
+- A modern browser such as Chrome, Edge, Firefox, or Safari
+- Internet access for live map search and routing
 
-Then open the Vite URL shown in the terminal. OpenStreetMap, search, and routing need Wi-Fi for live data, but the demo trip and fallback routes keep the app usable offline.
+## Installation
 
-## Pitch judge controls
-
-Press `D` to open the hidden demo panel:
-
-- Load demo trip
-- Force redirect
-- Force captcha
-- Force helper insult
-- Add 30 minutes to ETA
-- Reset trip
-
-Captchas cannot be closed with Escape or the backdrop. If a demo becomes stuck, press `Ctrl+Shift+K` to activate the hidden safety close.
-
-## Team
-
-Built by five members for MALFUNCTION 2026:
-
-1. M1 — Map and planner
-2. M2 — Trip simulation
-3. M3 — Traffic and redirects
-4. M4 — Roasts and directions
-5. M5 — Captchas, demo panel, theme, and final QA
-
-## Getting Started
+1. Open a terminal in the project directory.
+2. Install the dependencies:
 
 ```bash
 npm install
+```
+
+## Run the Program
+
+Start the development server:
+
+```bash
 npm run dev
 ```
 
-*TODO(M5): Expand README with full demo instructions and deployment guide.*
+Open the local address displayed in the terminal, usually:
+
+```text
+http://localhost:5173
+```
+
+## Other Commands
+
+Create a production build:
+
+```bash
+npm run build
+```
+
+Preview the production build locally:
+
+```bash
+npm run preview
+```
