@@ -27,6 +27,16 @@ export default function PlannerPanel() {
   const [activeField, setActiveField] = useState(null); // 'origin' | 'destination' | null
   const [pickMode, setPickMode] = useState(null); // 'origin' | 'destination' | null
   const [branchSpin, setBranchSpin] = useState(null);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = window.localStorage.getItem('asa-theme');
+    if (saved) return saved === 'dark';
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = darkMode ? 'dark' : 'light';
+    window.localStorage.setItem('asa-theme', darkMode ? 'dark' : 'light');
+  }, [darkMode]);
 
   const debounceRef = useRef(null);
   const spinIntervalRef = useRef(null);
@@ -198,18 +208,29 @@ export default function PlannerPanel() {
   return (
     <div className="panel map-planner">
       <div className="map-planner-header">
-        <div>
-          <span className="map-brand">ASA</span>
+        <div className="map-brand-lockup">
+          <img className="map-brand-logo" src="/asa-logo.svg" alt="ASA" />
           <span className="map-tagline">Asa ta padulong? (The Longest Way)</span>
         </div>
-        <button
-          type="button"
-          className="btn map-demo-btn"
-          onClick={() => loadDemoTrip(0)}
-          title="Load instant Cebu demo trip"
-        >
-          ⚡ Demo
-        </button>
+        <div className="map-header-actions">
+          <button
+            type="button"
+            className="map-theme-toggle"
+            onClick={() => setDarkMode((current) => !current)}
+            aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+            title={darkMode ? 'Switch to light mode' : 'Switch to dark mode'}
+          >
+            <span aria-hidden="true">{darkMode ? '☀️' : '🌙'}</span>
+          </button>
+          <button
+            type="button"
+            className="btn map-demo-btn"
+            onClick={() => loadDemoTrip(0)}
+            title="Load instant Cebu demo trip"
+          >
+            ⚡ Demo
+          </button>
+        </div>
       </div>
 
       {/* Mode Switcher */}
@@ -406,7 +427,7 @@ export default function PlannerPanel() {
           disabled={!origin || !destination}
           onClick={() => computeRoute()}
         >
-          🗺️ Get longest route
+          🗺️ Get route
         </button>
       )}
 
