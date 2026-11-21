@@ -22,10 +22,11 @@ export function useCaptchaTimer() {
     };
 
     const schedule = () => {
-      clearTimer();
+      if (timerRef.current) return;
       const base = CONFIG.CAPTCHA_INTERVAL_MS;
       const jitter = base * (0.8 + Math.random() * 0.4);
       timerRef.current = setTimeout(() => {
+        timerRef.current = null;
         const state = useStore.getState();
         if (
           state.plan.status === 'navigating' &&
@@ -34,23 +35,30 @@ export function useCaptchaTimer() {
         ) {
           openCaptcha();
         }
-        schedule();
+        syncTimer();
       }, jitter);
+    };
+
+    const syncTimer = () => {
+      const state = useStore.getState();
+      const shouldRun =
+        state.plan.status === 'navigating' &&
+        state.sim.status === 'running' &&
+        !state.blocked;
+
+      if (shouldRun) schedule();
+      else clearTimer();
     };
 
     const offRequest = bus.on(EVENTS.CAPTCHA_REQUEST, openCaptcha);
     const offReset = bus.on(EVENTS.TRIP_RESET, () => {
       clearTimer();
       useStore.getState().setBlocked(false);
+      syncTimer();
     });
 
-    schedule();
-
-    const unsubscribeStore = useStore.subscribe((state) => {
-      if (!state.blocked && state.plan.status === 'navigating' && state.sim.status === 'running') {
-        // The timer itself remains scheduled; successful solves merely leave it running.
-      }
-    });
+    const unsubscribeStore = useStore.subscribe(syncTimer);
+    syncTimer();
 
     return () => {
       clearTimer();

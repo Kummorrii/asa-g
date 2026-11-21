@@ -38,8 +38,6 @@ export default function RoastBanner() {
     setInput('');
   };
 
-  if (!visible && !typing) return null;
-
   return (
     <section className="roast-banner panel" aria-live="polite">
       <div className="roast-banner__header">
@@ -53,9 +51,11 @@ export default function RoastBanner() {
         <div className="roast-banner__typing" aria-label="Assistant is thinking">
           <span /><span /><span />
         </div>
-      ) : visible ? (
-        <div className="roast-banner__message">{typedText}</div>
-      ) : null}
+      ) : (
+        <div className="roast-banner__message">
+          {visible ? typedText : 'Naa ra ko diri, naghulat nga mangutana ka. Tabang? Ambot, pero present ko.'}
+        </div>
+      )}
       <form className="roast-banner__ask" onSubmit={submit}>
         <input
           value={input}
