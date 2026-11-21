@@ -1,4 +1,5 @@
-/* TODO(M5): Customize global look and feel; keep existing class + variable names */
+/* ASA global navigation theme (M5). Existing names are intentionally preserved. */
+
 :root {
   --panel-bg: rgba(18, 20, 28, 0.92);
   --panel-fg: #f3f4f6;
@@ -85,4 +86,29 @@ body,
   background: var(--danger);
   border-color: var(--danger);
   color: #fff;
+}
+
+/* Expand project-wide global styling, including Leaflet zoom controls */
+.leaflet-control-zoom {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(10px);
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--panel-fg);
+  border: 1px solid var(--panel-border);
+  border-radius: 4px;
+  padding: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background: rgba(255, 255, 255, 0.15);
 }
