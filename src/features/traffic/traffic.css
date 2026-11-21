@@ -1,1 +1,53 @@
-/* TODO(M3): Styles prefixed with traf- */
+.traf-panel {
+  pointer-events: auto;
+  max-width: 300px;
+  padding: 12px;
+  border: 1px solid var(--panel-border, rgba(255, 255, 255, 0.12));
+  border-radius: 14px;
+  background: var(--panel-bg, rgba(20, 20, 28, 0.92));
+  color: var(--text, #f8fafc);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+}
+
+.traf-eta {
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.traf-heavy-banner {
+  margin-top: 8px;
+  padding: 7px 9px;
+  border-radius: 8px;
+  background: #b91c1c;
+  color: white;
+  font-weight: 800;
+  text-align: center;
+}
+
+.traf-count {
+  margin-top: 8px;
+  color: var(--muted, #cbd5e1);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.traf-toast {
+  margin-top: 8px;
+  padding: 8px 9px;
+  border-radius: 8px;
+  background: var(--accent-soft, rgba(245, 158, 11, 0.16));
+  color: var(--text, #fff);
+  font-size: 13px;
+  line-height: 1.25;
+  border-left: 3px solid #f59e0b;
+}
+
+.traf-incident-icon {
+  background: transparent;
+  border: none;
+  text-align: center;
+  font-size: 24px;
+  line-height: 28px;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.55));
+}
