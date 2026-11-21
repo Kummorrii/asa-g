@@ -1,0 +1,16 @@
+export const EVENTS = {
+  TRIP_START: 'trip:start',
+  TRIP_RESET: 'trip:reset',
+  ROUTE_READY: 'route:ready',
+  REROUTE_REQUEST: 'reroute:request',
+  REDIRECT_FORCE: 'redirect:force',
+  DEMO_TRIP: 'demo:trip',
+  ROAST_REQUEST: 'roast:request',
+  CAPTCHA_REQUEST: 'captcha:request',
+  CAPTCHA_RESULT: 'captcha:result',
+  ARRIVAL_NEAR: 'arrival:near',
+  ARRIVED: 'arrived',
+  INCIDENT_HIT: 'incident:hit',
+  TRAFFIC_WORSE: 'traffic:worse',
+  ETA_BUMP: 'eta:bump',
+};

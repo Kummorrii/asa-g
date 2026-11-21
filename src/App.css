@@ -1,0 +1,74 @@
+.app-root {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.map-container-slot {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.slot {
+  position: absolute;
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.slot-top-left {
+  top: 14px;
+  left: 14px;
+  width: calc(100vw - 28px);
+  max-width: 340px;
+}
+
+.slot-top-center {
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 700px);
+  max-width: 420px;
+  min-width: 240px;
+}
+
+.slot-top-right {
+  top: 14px;
+  right: 14px;
+  width: calc(100vw - 28px);
+  max-width: 300px;
+}
+
+.slot-bottom-left {
+  bottom: 14px;
+  left: 14px;
+  width: calc(100vw - 28px);
+  max-width: 340px;
+}
+
+.slot-bottom-center {
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 660px);
+  max-width: 480px;
+  min-width: 260px;
+}
+
+.slot-bottom-right {
+  bottom: 14px;
+  right: 14px;
+  width: calc(100vw - 28px);
+  max-width: 260px;
+}
+
+.error-chip {
+  pointer-events: auto;
+  background: rgba(127, 29, 29, 0.92);
+  color: #fecaca;
+  border: 1px solid #ef4444;
+  border-radius: 8px;
+  padding: 6px 10px;
+  font-size: 0.75rem;
+}
