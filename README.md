@@ -5,6 +5,7 @@ ASA is a deliberately terrible Google Maps parody built for MALFUNCTION 2026 (iD
 ## Features
 
 - Search or click-map start and destination selection
+- Food-place searches automatically spin through matching branches and choose one for you
 - Longest available route with saved offline fallback routes
 - Simulated car or walker with speed controls and follow camera
 - Fake incidents, traffic, worsening ETA, and random redirects

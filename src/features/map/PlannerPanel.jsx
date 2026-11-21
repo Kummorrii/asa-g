@@ -6,6 +6,9 @@ import { searchPlaces } from './geocode';
 import { useRouteController } from './useRouteController';
 import './map.css';
 
+const FOOD_PLACE_QUERY =
+  /\b(restaurant|eatery|diner|fast[\s-]?food|food court|cafe|coffee shop|bakery|burger|pizza|fried chicken|ramen|sushi|bbq|barbecue|mcdonald'?s|jollibee|kfc|burger king|starbucks|subway|chowking|mang inasal|pizza hut|dunkin|wendy'?s|taco bell|7-eleven|shakey'?s|greenwich|popeyes|dairy queen|army navy|bo'?s coffee)\b/i;
+
 export default function PlannerPanel() {
   const mode = useStore((s) => s.mode);
   const origin = useStore((s) => s.origin);
@@ -23,10 +26,31 @@ export default function PlannerPanel() {
   const [destSuggestions, setDestSuggestions] = useState([]);
   const [activeField, setActiveField] = useState(null); // 'origin' | 'destination' | null
   const [pickMode, setPickMode] = useState(null); // 'origin' | 'destination' | null
+  const [branchSpin, setBranchSpin] = useState(null);
 
   const debounceRef = useRef(null);
+  const spinIntervalRef = useRef(null);
+  const spinTimeoutRef = useRef(null);
+  const searchRequestRef = useRef(0);
+
+  const clearBranchSpin = useCallback(() => {
+    if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
+    if (spinTimeoutRef.current) clearTimeout(spinTimeoutRef.current);
+    spinIntervalRef.current = null;
+    spinTimeoutRef.current = null;
+    setBranchSpin(null);
+  }, []);
+
+  useEffect(() => () => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (spinIntervalRef.current) clearInterval(spinIntervalRef.current);
+    if (spinTimeoutRef.current) clearTimeout(spinTimeoutRef.current);
+  }, []);
 
   const handleResetInputs = useCallback(() => {
+    searchRequestRef.current += 1;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    clearBranchSpin();
     setOriginText('');
     setDestText('');
     setOriginSuggestions([]);
@@ -34,7 +58,7 @@ export default function PlannerPanel() {
     setActiveField(null);
     setPickMode(null);
     window.__asaPickTarget = null;
-  }, []);
+  }, [clearBranchSpin]);
 
   const { computeRoute, startTrip, resetTrip, loadDemoTrip } = useRouteController({
     onResetInputs: handleResetInputs,
@@ -59,6 +83,8 @@ export default function PlannerPanel() {
   }, []);
 
   const handleInputChange = (field, value) => {
+    const requestId = ++searchRequestRef.current;
+    clearBranchSpin();
     if (field === 'origin') {
       setOriginText(value);
       setActiveField('origin');
@@ -76,12 +102,57 @@ export default function PlannerPanel() {
 
     debounceRef.current = setTimeout(async () => {
       const results = await searchPlaces(value);
+      if (requestId !== searchRequestRef.current) return;
+
+      if (FOOD_PLACE_QUERY.test(value) && results.length > 0) {
+        if (field === 'origin') setOriginSuggestions([]);
+        else setDestSuggestions([]);
+
+        let spinIndex = 0;
+        setBranchSpin({
+          field,
+          phase: 'spinning',
+          currentName: results[0].name,
+        });
+        spinIntervalRef.current = setInterval(() => {
+          spinIndex = (spinIndex + 1) % results.length;
+          setBranchSpin((current) =>
+            current?.phase === 'spinning'
+              ? { ...current, currentName: results[spinIndex].name }
+              : current
+          );
+        }, 110);
+        spinTimeoutRef.current = setTimeout(() => {
+          if (requestId !== searchRequestRef.current) return;
+          clearInterval(spinIntervalRef.current);
+          spinIntervalRef.current = null;
+          spinTimeoutRef.current = null;
+          const winner = results[Math.floor(Math.random() * results.length)];
+          if (field === 'origin') {
+            setOrigin(winner);
+            setOriginText(winner.name);
+          } else {
+            setDestination(winner);
+            setDestText(winner.name);
+          }
+          setActiveField(null);
+          setBranchSpin({
+            field,
+            phase: 'result',
+            winner,
+          });
+        }, 1900);
+        return;
+      }
+
       if (field === 'origin') setOriginSuggestions(results);
       else setDestSuggestions(results);
     }, 600);
   };
 
   const handleSelectSuggestion = (field, place) => {
+    searchRequestRef.current += 1;
+    clearBranchSpin();
     if (field === 'origin') {
       setOrigin(place);
       setOriginText(place.name);
@@ -95,12 +166,17 @@ export default function PlannerPanel() {
   };
 
   const togglePickOnMap = (field) => {
+    searchRequestRef.current += 1;
+    clearBranchSpin();
     const next = pickMode === field ? null : field;
     setPickMode(next);
     window.__asaPickTarget = next;
   };
 
   const handleSwap = () => {
+    searchRequestRef.current += 1;
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    clearBranchSpin();
     const prevOrigin = origin;
     const prevDest = destination;
     setOrigin(prevDest);
@@ -190,6 +266,23 @@ export default function PlannerPanel() {
                 ))}
               </ul>
             )}
+            {branchSpin?.field === 'origin' && (
+              <div className={`map-branch-spin ${branchSpin.phase}`}>
+                <span className="map-branch-wheel" aria-hidden="true">🎡</span>
+                <span className="map-branch-spin-copy">
+                  {branchSpin.phase === 'spinning' ? (
+                    <>Picking your branch…<strong>{branchSpin.currentName}</strong></>
+                  ) : (
+                    <>The system picked:<strong>{branchSpin.winner.name}</strong></>
+                  )}
+                </span>
+                {branchSpin.phase === 'result' && (
+                  <button type="button" className="map-branch-dismiss" onClick={clearBranchSpin} aria-label="Dismiss branch result">
+                    ×
+                  </button>
+                )}
+              </div>
+            )}
           </div>
 
           {/* Destination Input */}
@@ -224,6 +317,23 @@ export default function PlannerPanel() {
                   </li>
                 ))}
               </ul>
+            )}
+            {branchSpin?.field === 'destination' && (
+              <div className={`map-branch-spin ${branchSpin.phase}`}>
+                <span className="map-branch-wheel" aria-hidden="true">🎡</span>
+                <span className="map-branch-spin-copy">
+                  {branchSpin.phase === 'spinning' ? (
+                    <>Picking your branch…<strong>{branchSpin.currentName}</strong></>
+                  ) : (
+                    <>The system picked:<strong>{branchSpin.winner.name}</strong></>
+                  )}
+                </span>
+                {branchSpin.phase === 'result' && (
+                  <button type="button" className="map-branch-dismiss" onClick={clearBranchSpin} aria-label="Dismiss branch result">
+                    ×
+                  </button>
+                )}
+              </div>
             )}
           </div>
         </div>

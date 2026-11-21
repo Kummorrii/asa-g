@@ -28,7 +28,7 @@ export async function searchPlaces(query) {
     const params = new URLSearchParams({
       format: 'jsonv2',
       q,
-      limit: '5',
+      limit: '10',
       countrycodes: CONFIG.SEARCH_COUNTRY,
       viewbox: '123.7,10.5,124.1,10.2',
       bounded: '0',
