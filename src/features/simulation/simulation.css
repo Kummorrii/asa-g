@@ -1,1 +1,202 @@
-/* TODO(M2): Styles prefixed with sim- */
+.sim-panel {
+  width: 100%;
+  max-width: 340px;
+  pointer-events: auto;
+}
+
+.sim-panel-empty {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  min-height: 42px;
+  padding: 10px 12px;
+  color: var(--panel-muted);
+}
+
+.sim-blocked {
+  margin: -2px 0 8px;
+  border: 1px solid rgba(239, 68, 68, 0.55);
+  border-radius: 7px;
+  padding: 7px 8px;
+  background: rgba(239, 68, 68, 0.16);
+  color: #fecaca;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.sim-speed-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sim-mode-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--panel-border);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 22px;
+}
+
+.sim-speed {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  min-width: 0;
+}
+
+.sim-speed strong {
+  font-size: 2rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-speed span {
+  color: var(--panel-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.sim-timescale-badge {
+  margin-left: auto;
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: rgba(59, 130, 246, 0.18);
+  color: #bfdbfe;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.sim-progress {
+  height: 7px;
+  margin-top: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.sim-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--success), #60a5fa);
+  transition: width 80ms linear;
+}
+
+.sim-progress-meta {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  color: var(--panel-muted);
+  font-size: 0.72rem;
+}
+
+.sim-controls,
+.sim-time-scales {
+  display: flex;
+  gap: 6px;
+  margin-top: 9px;
+}
+
+.sim-control-main {
+  flex: 1;
+}
+
+.sim-time-scales {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.sim-scale-btn {
+  min-width: 0;
+  padding: 7px 4px;
+  font-size: 0.76rem;
+}
+
+.sim-scale-btn.is-active {
+  border-color: #60a5fa;
+  background: rgba(59, 130, 246, 0.28);
+}
+
+.sim-follow-btn {
+  width: 100%;
+  margin-top: 7px;
+  padding: 7px 10px;
+  font-size: 0.78rem;
+}
+
+.sim-follow-btn.is-active {
+  border-color: rgba(96, 165, 250, 0.7);
+  background: rgba(59, 130, 246, 0.18);
+}
+
+.sim-caption {
+  margin-top: 7px;
+  color: var(--panel-muted);
+  text-align: center;
+  font-size: 0.72rem;
+  font-style: italic;
+}
+
+.sim-vehicle-marker-wrapper {
+  border: none;
+  background: transparent;
+}
+
+.sim-vehicle {
+  position: absolute;
+  inset: 7px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.88);
+  box-shadow: 0 3px 12px rgba(15, 23, 42, 0.55);
+  font-size: 28px;
+  line-height: 1;
+  transform-origin: 50% 50%;
+  transition: transform 80ms linear;
+}
+
+.sim-vehicle-walk {
+  inset: 8px;
+  font-size: 24px;
+  animation: sim-walk-bob 500ms ease-in-out infinite alternate;
+}
+
+.sim-pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 42px;
+  height: 42px;
+  border: 2px solid rgba(96, 165, 250, 0.75);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  animation: sim-pulse 1.4s ease-out infinite;
+}
+
+@keyframes sim-pulse {
+  from {
+    width: 24px;
+    height: 24px;
+    opacity: 0.9;
+  }
+  to {
+    width: 48px;
+    height: 48px;
+    opacity: 0;
+  }
+}
+
+@keyframes sim-walk-bob {
+  from {
+    margin-top: -1px;
+  }
+  to {
+    margin-top: 2px;
+  }
+}
