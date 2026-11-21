@@ -45,17 +45,6 @@ Built by five members for MALFUNCTION 2026:
 4. M4 — Roasts and directions
 5. M5 — Captchas, demo panel, theme, and final QA
 
-## 60-second pitch script
-
-1. **0:00** — "Meet ASA, Bisaya for 'where?'. Everyone hates traffic. We made a GPS that loves it." Show the map picker and choose a start and destination.
-2. **0:10** — Get route. Point out that the route is way too long and red while the fake "AI helper" insults the destination.
-3. **0:20** — Tap Start. The car drives along the simulated route. Toggle to a walker once for effect, then back to the car.
-4. **0:30** — Force redirect: "Recalculating... pumunta ka sa Sirao Garden!"
-5. **0:40** — Open the captcha and stop the car. Fail it once on purpose for the funny line.
-6. **0:50** — Show the growing ETA. Close with: "ASA: we will get you there, eventually."
-
-Rehearse the demo twice on the actual presentation machine. Press `D` to skip waiting during judging.
-
 ## Getting Started
 
 ```bash
