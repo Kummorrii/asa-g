@@ -8,14 +8,14 @@
   display: grid;
   place-items: center;
   padding: 20px;
-  background: rgba(3, 7, 18, 0.72);
-  backdrop-filter: blur(8px);
+  background: rgba(67, 20, 7, 0.34);
+  backdrop-filter: blur(10px);
 }
 .cap-modal {
   width: min(430px, 92vw);
   max-height: 88vh;
   overflow: auto;
-  border-color: rgba(96, 165, 250, 0.32);
+  border-color: rgba(234, 88, 12, 0.28);
 }
 .cap-header {
   display: flex;
@@ -32,8 +32,9 @@
   height: 34px;
   border-radius: 50%;
   background: var(--accent);
+  color: #fff;
 }
-.cap-message { color: #fca5a5; font-weight: 700; }
+.cap-message { color: #dc2626; font-weight: 700; }
 .cap-joke { margin: 10px 0 0; color: var(--panel-muted); font-size: .82rem; }
 .cap-puzzle { display: grid; gap: 12px; }
 .cap-puzzle p { margin: 12px 0 0; }
@@ -42,21 +43,21 @@
   border: 1px solid var(--panel-border);
   border-radius: 8px;
   padding: 10px 12px;
-  background: rgba(255,255,255,.08);
+  background: rgba(255,255,255,.68);
   color: var(--panel-fg);
   font: inherit;
 }
 .cap-emoji-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-.cap-emoji-grid button { min-height: 76px; border: 1px solid var(--panel-border); border-radius: 10px; background: rgba(255,255,255,.06); font-size: 2rem; cursor: pointer; }
-.cap-emoji-grid button.cap-selected { border: 3px solid var(--accent); background: rgba(59,130,246,.22); }
-.cap-distorted-word { display: grid; place-items: center; min-height: 76px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.08); }
-.cap-distorted-word span { color: var(--panel-fg, #f3f4f6); font-size: 2rem; font-weight: 800; letter-spacing: .08em; }
+.cap-emoji-grid button { min-height: 76px; border: 1px solid var(--panel-border); border-radius: 10px; background: rgba(255,255,255,.62); font-size: 2rem; cursor: pointer; }
+.cap-emoji-grid button.cap-selected { border: 3px solid var(--accent); background: rgba(249,115,22,.18); }
+.cap-distorted-word { display: grid; place-items: center; min-height: 76px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.68); }
+.cap-distorted-word span { color: var(--panel-fg, #3f2c20); font-size: 2rem; font-weight: 800; letter-spacing: .08em; }
 .cap-slider { accent-color: var(--accent); }
 .cap-slider-label { color: var(--panel-muted); font-size: .8rem; }
 .cap-button-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 7px; }
-.cap-not-button { display: grid; place-items: center; min-height: 42px; padding: 8px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.08); color: var(--panel-fg, #f3f4f6); font: inherit; font-size: .82rem; line-height: 1.25; cursor: pointer; }
-.cap-hold { min-height: 72px; border: 2px solid var(--accent); border-radius: 12px; background: rgba(59,130,246,.18); color: var(--panel-fg); user-select: none; touch-action: none; }
-.cap-traf-light { display: flex; gap: 8px; width: fit-content; padding: 8px; border-radius: 18px; background: #111827; }
+.cap-not-button { display: grid; place-items: center; min-height: 42px; padding: 8px; border: 1px solid var(--panel-border); border-radius: 8px; background: rgba(255,255,255,.68); color: var(--panel-fg, #3f2c20); font: inherit; font-size: .82rem; line-height: 1.25; cursor: pointer; }
+.cap-hold { min-height: 72px; border: 2px solid var(--accent); border-radius: 12px; background: rgba(249,115,22,.14); color: var(--panel-fg); user-select: none; touch-action: none; }
+.cap-traf-light { display: flex; gap: 8px; width: fit-content; padding: 8px; border-radius: 18px; background: rgba(67, 20, 7, 0.84); }
 .cap-traf-light i, .cap-traf-light b { width: 24px; height: 24px; border-radius: 50%; }
 .cap-traf-light i:first-child { background: #ef4444; }
 .cap-traf-light i:nth-child(2) { background: #f59e0b; }
