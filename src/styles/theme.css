@@ -1,17 +1,28 @@
 /* ASA global navigation theme (M5). Existing names are intentionally preserved. */
 
 :root {
-  --panel-bg: rgba(18, 20, 28, 0.92);
-  --panel-fg: #f3f4f6;
-  --panel-muted: #9ca3af;
-  --panel-border: rgba(255, 255, 255, 0.12);
-  --accent: #3b82f6;
-  --accent-hover: #2563eb;
-  --danger: #ef4444;
-  --success: #10b981;
+  --panel-bg: rgba(255, 250, 245, 0.82);
+  --panel-fg: #3f2c20;
+  --panel-muted: #806b5d;
+  --panel-border: rgba(234, 88, 12, 0.18);
+  --accent: #f97316;
+  --accent-hover: #ea580c;
+  --accent-soft: rgba(249, 115, 22, 0.16);
+  --danger: #dc2626;
+  --success: #16a34a;
   --warning: #f59e0b;
-  --radius: 12px;
+  --radius: 14px;
   --font: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+:root[data-theme='dark'] {
+  --panel-bg: rgba(18, 16, 24, 0.88);
+  --panel-fg: #fff7ed;
+  --panel-muted: #c4b5a7;
+  --panel-border: rgba(251, 146, 60, 0.24);
+  --accent: #f97316;
+  --accent-hover: #fb923c;
+  --accent-soft: rgba(249, 115, 22, 0.18);
 }
 
 * {
@@ -26,9 +37,15 @@ body,
   width: 100%;
   height: 100%;
   font-family: var(--font);
-  background: #0f172a;
+  background: #fff7ed;
   color: var(--panel-fg);
   overflow: hidden;
+}
+
+:root[data-theme='dark'] body,
+:root[data-theme='dark'] #root {
+  background: #17120f;
+  color: var(--panel-fg);
 }
 
 .panel {
@@ -37,9 +54,13 @@ body,
   border: 1px solid var(--panel-border);
   border-radius: var(--radius);
   padding: 14px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 12px 34px rgba(124, 45, 18, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(14px) saturate(1.15);
   pointer-events: auto;
+}
+
+:root[data-theme='dark'] .panel {
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.07);
 }
 
 .btn {
@@ -48,19 +69,29 @@ body,
   justify-content: center;
   gap: 6px;
   border: 1px solid var(--panel-border);
-  border-radius: 8px;
+  border-radius: 9px;
   padding: 8px 12px;
   font-family: inherit;
   font-size: 0.875rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgba(255, 255, 255, 0.72);
   color: var(--panel-fg);
-  transition: background 0.15s ease, transform 0.1s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+
+:root[data-theme='dark'] .btn {
+  background: rgba(255, 247, 237, 0.08);
+  color: var(--panel-fg);
 }
 
 .btn:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 247, 237, 0.95);
+  border-color: rgba(234, 88, 12, 0.38);
+}
+
+:root[data-theme='dark'] .btn:hover:not(:disabled) {
+  background: rgba(249, 115, 22, 0.16);
 }
 
 .btn:active:not(:disabled) {
@@ -80,27 +111,28 @@ body,
 
 .btn-primary:hover:not(:disabled) {
   background: var(--accent-hover);
+  border-color: var(--accent-hover);
 }
 
-.btn-danger {
-  background: var(--danger);
-  border-color: var(--danger);
+:root[data-theme='dark'] .btn-primary {
+  background: var(--accent);
   color: #fff;
 }
 
 /* Expand project-wide global styling, including Leaflet zoom controls */
 .leaflet-control-zoom {
+  overflow: hidden;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
-  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(124, 45, 18, 0.18);
+  backdrop-filter: blur(12px);
 }
 
 .leaflet-control-zoom-in,
 .leaflet-control-zoom-out {
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--panel-fg);
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--accent-hover);
   border: 1px solid var(--panel-border);
   border-radius: 4px;
   padding: 6px;
@@ -110,5 +142,5 @@ body,
 
 .leaflet-control-zoom-in:hover,
 .leaflet-control-zoom-out:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: #fff7ed;
 }
