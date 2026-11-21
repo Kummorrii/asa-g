@@ -72,3 +72,49 @@
   padding: 6px 10px;
   font-size: 0.75rem;
 }
+
+@media (max-width: 768px) {
+  .app-root {
+    height: 100dvh;
+  }
+
+  .slot-top-left {
+    top: max(8px, env(safe-area-inset-top));
+    left: 8px;
+    width: calc(100vw - 16px);
+    max-width: none;
+  }
+
+  .slot-top-center,
+  .slot-top-right,
+  .slot-bottom-right,
+  .slot-bottom-left {
+    display: none;
+  }
+
+  .slot-bottom-center {
+    bottom: max(8px, env(safe-area-inset-bottom));
+    left: 8px;
+    width: calc(100vw - 16px);
+    max-width: none;
+    min-width: 0;
+    transform: none;
+  }
+
+  .panel {
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slot-top-left {
+    left: 6px;
+    width: calc(100vw - 12px);
+  }
+
+  .slot-bottom-center {
+    bottom: max(6px, env(safe-area-inset-bottom));
+    left: 6px;
+    width: calc(100vw - 12px);
+  }
+}

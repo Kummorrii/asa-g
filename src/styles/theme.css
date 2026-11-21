@@ -144,3 +144,16 @@ body,
 .leaflet-control-zoom-out:hover {
   background: #fff7ed;
 }
+
+@media (max-width: 768px) {
+  .leaflet-control-zoom-in,
+  .leaflet-control-zoom-out {
+    width: 38px;
+    height: 38px;
+    line-height: 24px;
+  }
+
+  .btn {
+    touch-action: manipulation;
+  }
+}

@@ -99,3 +99,25 @@
   0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
   30% { transform: translateY(-4px); opacity: 1; }
 }
+
+@media (max-width: 768px) {
+  .roast-banner,
+  .roast-directions {
+    max-width: none;
+  }
+
+  .roast-banner {
+    min-height: 72px;
+    padding: 8px 10px;
+  }
+
+  .roast-banner__ask input {
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .roast-banner__message,
+  .roast-directions__text {
+    font-size: 0.78rem;
+  }
+}

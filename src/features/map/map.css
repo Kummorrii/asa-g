@@ -443,3 +443,73 @@
 :root[data-theme='dark'] .map-suggestion-item {
   color: #fff7ed;
 }
+
+@media (max-width: 768px) {
+  .map-planner {
+    gap: 7px;
+    padding: 10px;
+  }
+
+  .map-brand-logo {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+  }
+
+  .map-theme-toggle {
+    width: 36px;
+    height: 36px;
+  }
+
+  .map-demo-btn {
+    min-height: 36px;
+  }
+
+  .map-mode-tab {
+    min-height: 38px;
+  }
+
+  .map-input-group {
+    min-height: 42px;
+  }
+
+  .map-input {
+    min-height: 32px;
+    font-size: 16px;
+  }
+
+  .map-pick-btn {
+    min-width: 32px;
+    min-height: 32px;
+  }
+
+  .map-swap-btn {
+    height: 42px;
+  }
+
+  .map-action-full {
+    min-height: 42px;
+  }
+
+  .map-suggestions,
+  .map-branch-spin {
+    max-height: min(220px, 34vh);
+  }
+}
+
+@media (max-width: 380px) {
+  .map-planner {
+    padding: 8px;
+  }
+
+  .map-tagline {
+    max-width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .map-demo-btn {
+    padding: 6px;
+  }
+}
